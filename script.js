@@ -15,7 +15,9 @@ var parseCharset = function(v) {
 var nfaToDotScript = function(nfa) {
     var initialState = nfa.initialState;
     var finalState = nfa.finalState;
-    var result = `digraph fox_state_machine {
+
+    var result = `
+digraph nondeterministic_finite_automaton {
     rankdir = LR;
     node [shape = circle]; ${initialState};
     node [shape = doublecircle]; ${finalState};
@@ -29,7 +31,7 @@ var nfaToDotScript = function(nfa) {
         for (var accept in node) {
             for (var i in node[accept]) {
                 var q = node[accept][i];
-                result += "    " + p + "->" + q + " [label=\"" + accept + "\"];\n";
+                result += `    ${p} -> ${q} [label="${accept}"]\n`;
             }
         }
     }
@@ -41,10 +43,15 @@ var nfaToDotScript = function(nfa) {
 var dfaToDotScript = function(dfa) {
     var initialState = dfa.initialState;
     var finalStates = Array.from(dfa.finalStates).join(', ');
-    var result = `digraph fox_state_machine {
+
+    var result = `
+digraph deterministic_finite_automaton {
     rankdir = LR;
-    node [shape = circle]; ${initialState};
-    node [shape = doublecircle]; ${finalStates};
+`;
+    if (!dfa.finalStates.has(initialState)) {
+        result += `    node [shape = circle]; ${initialState};\n`;
+    }
+    result += `    node [shape = doublecircle]; ${finalStates};
     node [shape = plaintext];
     "" -> ${initialState} [label = "start"];
     node [shape = circle];
@@ -53,7 +60,7 @@ var dfaToDotScript = function(dfa) {
     for (var p in dfa._transitions) {
         for (var accept in dfa._transitions[p]) {
             var q = dfa._transitions[p][accept];
-            result += "    " + p + "->" + q + " [label=" + accept + "];\n";
+            result += `    ${p} -> ${q} [label="${accept}"]\n`;
         }
     }
     result += '}';
@@ -74,6 +81,13 @@ $('document').ready(function() {
         var charset = parseCharset(re);
         $charset.val(charset);
     });
+
+    $input.on('keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == 13) {
+            $dfaBtn.click();
+        }
+    })
 
     $nfaBtn.click(function() {
         var re = $input.val();
