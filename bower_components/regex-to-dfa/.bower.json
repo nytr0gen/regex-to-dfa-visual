@@ -1,11 +1,11 @@
 {
   "name": "regex-to-dfa",
   "homepage": "https://github.com/nytr0gen/regex-to-dfa",
-  "_release": "bdc1599975",
+  "_release": "94534a98bf",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "bdc1599975c395a73b2cf67d0b418cd1adecb767"
+    "commit": "94534a98bfcc15cc79c4fc4ee2f05a1fc5ec66c8"
   },
   "_source": "https://github.com/nytr0gen/regex-to-dfa.git",
   "_target": "*",

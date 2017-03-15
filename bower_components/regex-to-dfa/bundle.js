@@ -1,4 +1,6 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var NFA = require('./nfa.js');
+
 var numCmp = function(x, y) {
     return x - y;
 };
@@ -79,19 +81,18 @@ DFA.prototype.check = function(s) {
 };
 
 DFA.prototype._fromNFA = function(nfa) {
-    const EPS = 'eps';
     var epsClosure = function(state, states) {
         var states = new Set([state]);
         var Q = [state];
         while (Q.length > 0) {
             var p = Q.shift();
             if (!(p in nfa._transitions) ||
-                !(EPS in nfa._transitions[p])
+                !(NFA.EPS in nfa._transitions[p])
             ) {
                 continue;
             }
 
-            for (var q of nfa._transitions[p][EPS]) {
+            for (var q of nfa._transitions[p][NFA.EPS]) {
                 if (!states.has(q)) {
                     states.add(q);
                     Q.push(q);
@@ -172,7 +173,7 @@ DFA.prototype._fromNFA = function(nfa) {
 
 module.exports = DFA;
 
-},{}],2:[function(require,module,exports){
+},{"./nfa.js":2}],2:[function(require,module,exports){
 var NFA = function(charset, initialState, finalState) {
     this.initialState = initialState;
     this.finalState = finalState;
@@ -180,7 +181,7 @@ var NFA = function(charset, initialState, finalState) {
     this._transitions = [];
     this._state = 0;
 };
-NFA.EPS = 'eps';
+NFA.EPS = 'ε';
 
 NFA.fromRegexTree = function(tree, charset) {
     var nfa = new this(charset);

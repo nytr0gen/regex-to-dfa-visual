@@ -22,14 +22,14 @@ var nfaToDotScript = function(nfa) {
     node [shape = plaintext];
     "" -> ${initialState} [label = "start"];
     node [shape = circle];
-    `;
+`;
 
     for (var p in nfa._transitions) {
         var node = nfa._transitions[p];
         for (var accept in node) {
             for (var i in node[accept]) {
                 var q = node[accept][i];
-                result += "    " + p + "->" + q + " [label=" + accept + "];\n";
+                result += "    " + p + "->" + q + " [label=\"" + accept + "\"];\n";
             }
         }
     }
@@ -48,7 +48,7 @@ var dfaToDotScript = function(dfa) {
     node [shape = plaintext];
     "" -> ${initialState} [label = "start"];
     node [shape = circle];
-    `;
+`;
 
     for (var p in dfa._transitions) {
         for (var accept in dfa._transitions[p]) {

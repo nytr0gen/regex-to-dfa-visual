@@ -5,7 +5,7 @@ var NFA = function(charset, initialState, finalState) {
     this._transitions = [];
     this._state = 0;
 };
-NFA.EPS = 'eps';
+NFA.EPS = 'ε';
 
 NFA.fromRegexTree = function(tree, charset) {
     var nfa = new this(charset);

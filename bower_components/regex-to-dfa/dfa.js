@@ -1,3 +1,5 @@
+var NFA = require('./nfa.js');
+
 var numCmp = function(x, y) {
     return x - y;
 };
@@ -78,19 +80,18 @@ DFA.prototype.check = function(s) {
 };
 
 DFA.prototype._fromNFA = function(nfa) {
-    const EPS = 'eps';
     var epsClosure = function(state, states) {
         var states = new Set([state]);
         var Q = [state];
         while (Q.length > 0) {
             var p = Q.shift();
             if (!(p in nfa._transitions) ||
-                !(EPS in nfa._transitions[p])
+                !(NFA.EPS in nfa._transitions[p])
             ) {
                 continue;
             }
 
-            for (var q of nfa._transitions[p][EPS]) {
+            for (var q of nfa._transitions[p][NFA.EPS]) {
                 if (!states.has(q)) {
                     states.add(q);
                     Q.push(q);
