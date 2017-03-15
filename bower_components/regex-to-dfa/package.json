@@ -1,0 +1,19 @@
+{
+  "name": "regex-to-dfa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytr0gen/regex-to-dfa.git"
+  },
+  "author": "nytr0gen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nytr0gen/regex-to-dfa/issues"
+  },
+  "homepage": "https://github.com/nytr0gen/regex-to-dfa#readme"
+}
