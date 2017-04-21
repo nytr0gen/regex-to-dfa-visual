@@ -24,6 +24,7 @@ Conceal.parse = function(id) {
     return Conceal._list[id];
 };
 
+// Debugging purposes
 // Conceal = JSON;
 
 var DFA = function(charset, initialState) {
@@ -350,9 +351,9 @@ if (require.main === module) {
 }
 
 },{}],"regex-to-dfa":[function(require,module,exports){
-var regexParser = require('./regex-parser');
-var NFA = require('./nfa');
-var DFA = require('./dfa');
+var regexParser = require('./src/regex-parser');
+var NFA = require('./src/nfa');
+var DFA = require('./src/dfa');
 
 module.exports = {
     regexParser: regexParser,
@@ -360,4 +361,4 @@ module.exports = {
     DFA: DFA,
 };
 
-},{"./dfa":1,"./nfa":2,"./regex-parser":3}]},{},[]);
+},{"./src/dfa":1,"./src/nfa":2,"./src/regex-parser":3}]},{},[]);

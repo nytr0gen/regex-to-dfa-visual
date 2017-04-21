@@ -1,6 +1,7 @@
-var regexParser = require('./regex-parser');
-var NFA = require('./nfa');
-var DFA = require('./dfa');
+var main = require('./index');
+var regexParser = main.regexParser
+var NFA = main.NFA
+var DFA = main.DFA
 
 var expr = '(ab|ba)*';
 // var expr = '(ab|ba)*(aa|bb)*abb';

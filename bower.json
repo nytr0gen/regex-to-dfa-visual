@@ -16,6 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "viz.js": "^1.7.1"
+    "viz.js": "^1.7.1",
+    "regex-to-dfa": "git+https://github.com/nytr0gen/regex-to-dfa.git",
+    "jquery": "^3.2.1"
   }
 }

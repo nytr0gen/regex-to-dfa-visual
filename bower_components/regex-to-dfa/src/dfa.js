@@ -23,6 +23,7 @@ Conceal.parse = function(id) {
     return Conceal._list[id];
 };
 
+// Debugging purposes
 // Conceal = JSON;
 
 var DFA = function(charset, initialState) {
